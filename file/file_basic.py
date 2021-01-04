@@ -32,9 +32,37 @@ f = open( "/Users/kakao/Desktop/python_practice/Study_Python/file/a.txt", "r" )
 print( f.read() )
 
 # 실습 # 2
-f = open( "/Users/kakao/Desktop/python_practice/Study_Python/file/a.txt", "w" )
-f.write( "leo.myfavorite abc\nbewisesh91 abc")
-f.close()
-
-f = open( "/Users/kakao/Desktop/python_practice/Study_Python/file/a.txt", "r" )
+f = open( "/Users/kakao/Desktop/python_practice/Study_Python/file/b.txt", "r" )
 user_info = f.readlines()
+print(user_info)
+
+id = input('아이디를 입력해주세요 : ')
+pw = input('비밀번호를 입력해주세요 : ')
+
+check = False
+for i in range(len(user_info)) :
+    check_info = user_info[i].split()
+    if check_info[0] == id and check_info[1] == pw :
+        check = True
+        break
+    else :
+        check = False
+
+if check :
+    print('로그인 성공')
+else :
+    print('로그인 실패')
+
+
+
+# 실습 # 3
+# name.txt 라는 파일을 읽어와 그 내용을 출력해주세요.
+# name.txt라는 파일이 없다면 "파일이 없습니다." 라는 메세지를 출력해주세요.
+
+try : 
+    f = open( "/Users/kakao/Desktop/python_practice/Study_Python/file/name.txt", "r" )
+    info = f.readlines()
+    print(info)
+    f.close()
+except FileNotFoundError :
+    print('파일이 없습니다.')
