@@ -93,3 +93,48 @@ print(f'data_dict1 : {type(data_dict1)}, {data_dict1}')
 print(f'"홍길동" in data_dict1 => {"홍길동" in data_dict1}')
 print(f'"신사임당" not in data_dict1 => {"신사임당" not in data_dict1}')
 
+# for 문을 이용한 딕셔너리 항목 접근
+data_dict1 = {
+    '홍길동' : 20,
+    '이순신' : 45,
+    '강감찬' : 35,
+}
+print(f'data_dict1: {type(data_dict1)}, {data_dict1}')
+print(f'{type(data_dict1.items())}, {data_dict1.items()}')
+print(f'{type(data_dict1.keys())}, {data_dict1.keys()}')
+print(f'{type(data_dict1.values())}, {data_dict1.values()}')
+
+for key in data_dict1 :
+    print(f'key, data_dict1[key] => {key}, {data_dict1[key]}')
+
+for item in data_dict1.items() :
+    print(f'item[0], item[1] => {item[0]}, {item[1]}')
+
+for key, value in data_dict1.items() :
+    print(f'key, value => {key}, {value}')
+
+for value in data_dict1.values() :
+    print(f'value => {value}')
+
+# 딕셔너리 내포
+data_dict1 = {
+    '홍길동' : 20,
+    '이순신' : 45,
+    '강감찬' : 35,
+}
+print(f'data_dict1: {type(data_dict1)}, {data_dict1}')
+
+data_set1 = {item for item in data_dict1.items()}
+print(f'data_set1 : {type(data_set1)}, {data_set1}')
+
+data_dict2 = {key : data_dict1[key] for key in data_dict1}
+print(f'data_dict2: {type(data_dict2)}, {data_dict2}')
+
+data_dict3 = {key : data_dict1[key] for key in data_dict1.keys()}
+print(f'data_dict3: {type(data_dict3)}, {data_dict3}')
+
+data_dict4 = {item[0] : item[1] for item in data_dict1.items()}
+print(f'data_dict4: {type(data_dict4)}, {data_dict4}')
+
+data_dict5 = {key : value for key, value in data_dict1.items()}
+print(f'data_dict5: {type(data_dict5)}, {data_dict5}')
