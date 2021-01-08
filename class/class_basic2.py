@@ -1,72 +1,3 @@
-# # 클래스 생성 1
-# class Book(object) :
-#     def __init__(self, title, author) : # 생성자, 클래스를 선언할 때 인자로 받아올 것들을 정의
-#         self.title = title              # 생성자는 클래스를 사용하려 할 때 자동으로 호출되는 함수
-#         self.author = author            # 생성자 안에서 self.인자명 = 인자명 등으로 사용할 것들을 정의
-    
-#     def print_title(self) :             
-#         print(self.title)               # self.인자명 으로 작성한 것들을 사용할 수 있음
-
-#     def print_author(self) :
-#         print(self.author)              # self.인자명 으로 작성한 것들을 사용할 수 있음
-    
-# book1 = Book('오만과 편견', '제인오스틴')
-# print(book1.title)
-# print(book1.author)
-# book1.print_title()
-# book1.print_author()
-
-# # 클래스 생성 2
-# class Student(object) :
-#     def __init__(self, name, age, gender) :
-#         self.name = name
-#         self.age = age
-#         self.gender = gender
-
-#     def birth_year(self) :
-#         now_year = 2021
-#         print(now_year - self.age + 1)
-
-#     def last_name(self) :
-#         print(self.name[0])
-
-#     def change_name(self, new_name) :
-#         self.name = new_name
-
-# student1 = Student('문승현', 31, 'Male')
-# student1.birth_year()
-# student1.last_name()
-
-# # 클래스 생성 3
-# class Supermarket(object) :
-#     def __init__(self, location, name, product, customer) :
-#         self.location = location
-#         self.name = name
-#         self.product = product
-#         self.customer = customer
-
-#     def printLocation(self) :
-#         print(self.location)
-    
-#     def changeCategory(self, new_product) :
-#         self.product = new_product
-    
-#     def showList(self) :
-#         print(self.product)
-    
-#     def enterCustomer(self) :
-#         self.customer = self.customer + 1
-    
-#     def showInfo(self) :
-#         print(self.name, self.location, self.product, self.customer)
-
-# supermarket1 = Supermarket('서울', 'S슈퍼마켓', '과자', 0)
-# supermarket1.printLocation()
-# supermarket1.changeCategory('아이스크림')
-# supermarket1.showList()
-# supermarket1.enterCustomer()
-# supermarket1.showInfo()
-
 # 객체 지향의 이해
 # 객체 지향 프로그래밍이란?
 # 객체 형성(상태와 행위로 이루어짐) => 객체 조립 => 프로그램 형성
@@ -332,7 +263,10 @@ class Person6:
     
     def to_str(self) :
         return f'{self.__name}\t{self.__age}'
-
+    
+    def __del__(self) :
+        print(f'{self.__name} 객체가 제거되었습니다.')
+        
     @property
     def name(self) : # 변수 처럼 사용 가능
         return self.__name # __name 필드 값을 반환하는 getter 메서드의 역할
@@ -354,3 +288,270 @@ people = [
 ]
 
 print(f'현재 Person6 클래스의 인스턴스는 총 {Person6.count}개 입니다.')
+
+# 클래스 메서드
+# 클래스가 소유한 메서드
+# class 클래스명:
+#   ...
+#   @classmethod
+#   def 클래스메서드(cls, 매개변수목록) :
+#        ...
+
+# 클래스 메서드의 사용
+# 클래스명.클래스메서드(매개변수목록)
+
+class Person7:
+    count = 0
+
+    def __init__(self, name, age) : 
+        self.__name = name # __를 통해 프라이빗 필드 생성
+        self.__age = age
+        Person7.count += 1
+        print(f'{self.__name} 객체가 생성되었습니다.')
+    
+    def to_str(self) :
+        return f'{self.__name}\t{self.__age}'
+    
+    def __del__(self) :
+        print(f'{self.__name} 객체가 제거되었습니다.')
+
+
+    @property
+    def name(self) : # 변수 처럼 사용 가능
+        return self.__name # __name 필드 값을 반환하는 getter 메서드의 역할
+
+    @property
+    def age(self) :
+        return self.__age
+    
+    @age.setter
+    def age(self, age) :
+        if age < 0:
+            raise TypeError('나이는 0이상의 값만 허용합니다.')
+        self.__age = age
+    
+    @classmethod
+    def get_info(cls) :
+        return f'현재 Person7 클래스의 인스턴스는 총 {cls.count}개입니다.' # cls.count는 Person7.count와 동일
+
+people = [
+    Person7('홍길동', 20),
+    Person7('이순신', 45),
+    Person7('강감찬', 35)
+]
+
+print(Person7.get_info())
+
+# 연산자 오버로딩
+class Person8:
+    count = 0
+
+    def __init__(self, name, age) : 
+        self.__name = name # __를 통해 프라이빗 필드 생성
+        self.__age = age
+        Person8.count += 1
+        print(f'{self.__name} 객체가 생성되었습니다.')
+    
+    def to_str(self) :
+        return f'{self.__name}\t{self.__age}'
+
+    def __del__(self) :
+        print(f'{self.__name} 객체가 제거되었습니다.')
+
+    @property
+    def name(self) : # 변수 처럼 사용 가능
+        return self.__name # __name 필드 값을 반환하는 getter 메서드의 역할
+
+    @property
+    def age(self) :
+        return self.__age
+    
+    @age.setter
+    def age(self, age) :
+        if age < 0:
+            raise TypeError('나이는 0이상의 값만 허용합니다.')
+        self.__age = age
+    
+    @classmethod
+    def get_info(cls) :
+        return f'현재 Person8 클래스의 인스턴스는 총 {cls.count}개입니다.'
+    
+    def __gt__(self, other) :
+        return self.__age > other.__age
+    
+    def __ge__(self, other) :
+        return self.__age >= other.__age
+    
+    def __lt__(self, other) :
+        return self.__age < other.__age
+    
+    def __le__(self, other) :
+        return self.__age <= other.__age
+
+    def __eq__(self, other) :
+        return self.__age == other.__age
+    
+    def __ne__(self, other) :
+        return self.__age != other.__age
+
+members = [
+    Person8('홍길동', 20),
+    Person8('이순신', 45),
+    Person8('강감찬', 35)
+]
+
+cnt = len(members)
+i = 0
+while True :
+    print(f'members[{i}] > members[{i+1}] => {members[i] > members[i + 1]} ')
+    i += 1
+    if i == cnt -1 :
+        print(f'members[{i}] > members[{0}] => {members[i] > members[0]}')
+        break
+
+# 스트링 메서드 : __str()__
+# str() 함수에 객체를 전달해 문자열로 변환
+class Person9:
+    count = 0
+
+    def __init__(self, name, age) : 
+        self.__name = name # __를 통해 프라이빗 필드 생성
+        self.__age = age
+        Person9.count += 1
+        print(f'{self.__name} 객체가 생성되었습니다.')
+    
+    def to_str(self) :
+        return f'{self.__name}\t{self.__age}'
+
+    def __del__(self) :
+        print(f'{self.__name} 객체가 제거되었습니다.')
+
+    
+    @property
+    def name(self) : # 변수 처럼 사용 가능
+        return self.__name # __name 필드 값을 반환하는 getter 메서드의 역할
+
+    @property
+    def age(self) :
+        return self.__age
+    
+    @age.setter
+    def age(self, age) :
+        if age < 0:
+            raise TypeError('나이는 0이상의 값만 허용합니다.')
+        self.__age = age
+    
+    @classmethod
+    def get_info(cls) :
+        return f'현재 Person9 클래스의 인스턴스는 총 {cls.count}개입니다.'
+    
+    def __gt__(self, other) :
+            return self.__age > other.__age
+    
+    def __ge__(self, other) :
+        return self.__age >= other.__age
+    
+    def __lt__(self, other) :
+        return self.__age < other.__age
+    
+    def __le__(self, other) :
+        return self.__age <= other.__age
+
+    def __eq__(self, other) :
+        return self.__age == other.__age
+    
+    def __ne__(self, other) :
+        return self.__age != other.__age
+
+    def __str__(self) :
+        return f'{self.__name}\t{self.__age}'
+
+members = [
+    Person9('홍길동', 20),
+    Person9('이순신', 45),
+    Person9('강감찬', 35)
+]
+
+for member in members :
+    print(str(member)) # Person9 클래스의 객체 전달하면 __srt__ 메서드 호출
+
+
+# 클래스 상속
+# 부모 클래스의 동작을 자식 클래스가 재사용, 확장, 수정 하는 것을 의미
+# class 클래스명(부모클래스명) :
+
+class Parent:
+    def __init__(self, family_name) :
+        self.__family_name = family_name
+        print('Parent 클래스의 __init__() ...')
+    
+    @property
+    def family_name(self) :
+        return self.__family_name
+
+class Child(Parent):
+    def __init__(self, first_name, last_name) :
+        Parent.__init__(self, last_name) # 부모 클래스의 __famil_name 필드를 매개변수 last_name으로 초기화
+        # super().__init__(last_name) # Parent 대신 super()라고 작성해도 됨
+        self.__first_name = first_name
+        print('Child 클래스의 __init__() ...')
+        
+    @property
+    def first_name(self) :
+        return self.__first_name
+
+    @first_name.setter
+    def first_name(self, first_name):
+        self.__first_name = first_name
+    
+    @property
+    def name(self) :
+        return f'{self.family_name} {self.first_name}'
+    
+child = Child("길동", "홍")
+print(child.family_name)
+print(child.first_name)
+print(child.name)
+print('======>')
+child.first_name = '길순'
+print(child.name)
+
+# 메서드 오버라이딩
+# 부모 클래스에 있는 메서드와 동일한 서명을 가진 메서드를 자식 클래스에서 다시 정의해 사용하는 것
+
+class Parent2:
+    def __init__(self, family_name) :
+        self.__family_name = family_name
+        print('Parent2 클래스의 __init__() ...')
+    
+    @property
+    def family_name(self) :
+        return self.__family_name
+
+    def print_info(self) :
+        print(f'Parent2 : {self.family_name}')
+
+class Child2(Parent2):
+    def __init__(self, first_name, last_name):
+        Parent2.__init__(self, last_name)
+        self.__first_name = first_name
+        print('Child2 클래스의 __init__() ...')
+
+    @property
+    def first_name(self) :
+        return self.first_name
+    
+    @first_name.setter
+    def first_name(self, first_name) :
+        self.__first_name = first_name
+    
+    @property
+    def name(self) :
+        return f'{self.family_name} {self.first_name}'
+    
+    def print_info(self) :
+        Parent2.print_info(self) # 메서드 오버라이딩
+        print(f'Child2 : {self.name}')
+
+child = Child2('길동', '홍')
+child.print_info()
