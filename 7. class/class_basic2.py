@@ -37,8 +37,9 @@
 # 공통 행위 : 수강 신청하기, 휴학 신청하기, 복학 신청하기 등
 # 공통의 속성과 행위를 찾아서 타입을 정의하는 과정
 
+# 추상 데이터 타입
 # 데이터 타입의 표현과 연산을 캡슐화, 접근 제어를 통해 데이터의 정보를 은닉할 수 있음
-# 추상 데이터 타입 : 클래스, 추상 데이터 타입의 인스턴스 : 객체, 추상 데이터 타입에서 정의된 연산 : 메서드
+#  래스, 추상 데이터 타입의 인스턴스 : 객체, 추상 데이터 타입에서 정의된 연산 : 메서드
 
 # 상속이란? 새로운 클래스가 기존의 클래스의 데이터와 연산을 이용할 수 있게 하는 기능
 # 기존의 클래스 : 부모 클래스, 기반 클래스, 상위 클래스, 슈퍼 클래스
@@ -49,7 +50,7 @@
 
 # 다형성이란? 다양한 형태로 나타날 수 있는 특징
 # 하나의 클래스 내부에 같은 이름의 행위를 여러개 정의하거나 상위클래스의 행위를 하위 클래스에서 재정의 가능
-# 어떤 한요소에 여러 개념을 넣어 놓는 것 가능
+# 즉, 어떤 한요소에 여러 개념을 넣어 놓는 것
 # 오버라이딩 : 같은 이름의 메서드가 여러 클래스에서 다른 기능을 하는 것
 # 오버로딩 : 같은 이름의 메서드가 인자의 개수나 자료형에 따라서 다른 기능을 하는 것
 
@@ -92,14 +93,14 @@ for member in members :
 # ...
 
 # 객체 생성
-# 변수 = 클래스명()  
+# 변수 = 클래스명(), <- 이를 생성자 메서드라고하며 클래스 이름과 동일한 메서드이다.
 
 class Person :
     pass
 
-member = Person() # Person()를 생성자 메서드라고 함
+member = Person() # member 객체를 생성하는 Person()를 생성자 메서드라고 함
 
-if isinstance(member, Person) :
+if isinstance(member, Person) : # True
     print('member는 Person 클래스의 인스턴스입니다.')
 
 # 생성자 메서드 : 객체를 생성하기 위해 호출
@@ -112,7 +113,7 @@ if isinstance(member, Person) :
 # def __del__(self) :
 # ...
 
-# self는 객체 공간을 가르키는 식별자, 객체 공간의 필드와 메서드에 접근할 경우 sefl.식별자 형식 이용
+# self는 객체 공간을 가르키는 식별자, 객체 공간의 필드와 메서드에 접근할 경우 self.식별자 형식 이용
 
 class Person2 :
     def __init__(self, name, age) : # self가 가리키는 객체 공간에 name, age 필드 생성
@@ -140,7 +141,8 @@ class Person3 :
     def __del__(self) :
         print(f'{self.name} 객체가 제거되었습니다.')
 
-    def to_str(self) : # 인스턴스 메서드
+    # 인스턴스 메서드
+    def to_str(self) : 
         return f'{self.name}\t{self.age}'
 
 members = [
@@ -150,35 +152,37 @@ members = [
     ] 
 
 for member in members:
-    print(member.to_str())
+    print(member.to_str()) # 인스턴스.메서드
 
 # 인스턴스 변수란?
 # 클래스 내에서 self.변수 형태를 가지는 변수
 # 객체마다 가지고 있는 객체 고유의 정보
 
 # 인스턴스 변수의 접근 제한 기능
-# class Person4 :
-#     def __init__(self, name, age) : 
-#         self.__name = name # __를 통해 프라이빗 필드 생성
-#         self.__age = age
-#         print(f'{self.__name} 객체가 생성되었습니다.')
+class Person4 :
+    def __init__(self, name, age) : 
+        self.__name = name # __를 통해 프라이빗 필드 생성
+        self.__age = age
+        print(f'{self.__name} 객체가 생성되었습니다.')
     
-#     def __del__(self) :
-#         print(f'{self.__name} 객체가 제거되었습니다.')
+    def __del__(self) :
+        print(f'{self.__name} 객체가 제거되었습니다.')
 
-#     def to_str(self) :
-#         return f'{self.__name}\t{self.__age}'
+    def to_str(self) :
+        return f'{self.__name}\t{self.__age}'
 
-#     def get_name(self) :
-#         return self.__name
+    # 인스턴스 변수의 접근 제한 기능
+    # member[0][1] = -200 이렇게 바꾸는 것을 막고, 아래의 인스턴스 변수를 사용하도록 지정
+    def get_name(self) :
+        return self.__name
     
-#     def get_age(self) :
-#         return self.__age
+    def get_age(self) :
+        return self.__age
 
-#     def set_age(self, age) : # __age 필드의 값을 변경하는 메서드
-#         if age < 0 :
-#             raise TypeError('나이는 0이상의 값만 허용합니다.')
-#         self.__age = age
+    def set_age(self, age) : # __age 필드의 값을 변경하는 메서드
+        if age < 0 :
+            raise TypeError('나이는 0이상의 값만 허용합니다.')
+        self.__age = age
 
 # members = [
 #     Person4('홍길동', 20),
@@ -204,42 +208,42 @@ for member in members:
 #       @property의이름.setter
 #       def name(self) :
 
-# class Person5 :
-#     def __init__(self, name, age) : 
-#         self.__name = name # __를 통해 프라이빗 필드 생성
-#         self.__age = age
-#         print(f'{self.__name} 객체가 생성되었습니다.')
+class Person5 :
+    def __init__(self, name, age) : 
+        self.__name = name # __를 통해 프라이빗 필드 생성
+        self.__age = age
+        print(f'{self.__name} 객체가 생성되었습니다.')
     
-#     def __del__(self) :
-#         print(f'{self.__name} 객체가 제거되었습니다.')
+    def __del__(self) :
+        print(f'{self.__name} 객체가 제거되었습니다.')
 
-#     def to_str(self) :
-#         return f'{self.__name}\t{self.__age}'
+    def to_str(self) :
+        return f'{self.__name}\t{self.__age}'
     
-#     @property
-#     def name(self) : # 변수 처럼 사용 가능
-#         return self.__name # __name 필드 값을 반환하는 getter 메서드의 역할
+    @property # 모습은 메서드이지만,
+    def name(self) : # 변수 처럼 사용 가능
+        return self.__name # __name 필드 값을 반환하는 getter 메서드의 역할
 
-#     @property
-#     def age(self) :
-#         return self.__age
+    @property
+    def age(self) :
+        return self.__age
     
-#     @age.setter
-#     def age(self, age) :
-#         if age < 0:
-#             raise TypeError('나이는 0이상의 값만 허용합니다.')
-#         self.__age = age
+    @age.setter
+    def age(self, age) :
+        if age < 0:
+            raise TypeError('나이는 0이상의 값만 허용합니다.')
+        self.__age = age
 
-# members = [
-#     Person5('홍길동', 20),
-#     Person5('이순신', 45),
-#     Person5('강감찬', 35)
-# ]
+members = [
+    Person5('홍길동', 20),
+    Person5('이순신', 45),
+    Person5('강감찬', 35)
+]
 
-# members[0].age = 55
+members[0].age = 55 # 메서드 처럼 age() 이렇게 안쓰고, age만 써도 된다.
 
-# for member in members :
-#     print(member.to_str())
+for member in members :
+    print(member.to_str())
 
 
 
@@ -258,7 +262,7 @@ class Person6:
     def __init__(self, name, age) : 
         self.__name = name # __를 통해 프라이빗 필드 생성
         self.__age = age
-        Person6.count += 1
+        Person6.count += 1 # 클래스 변수
         print(f'{self.__name} 객체가 생성되었습니다.')
     
     def to_str(self) :
@@ -330,7 +334,7 @@ class Person7:
             raise TypeError('나이는 0이상의 값만 허용합니다.')
         self.__age = age
     
-    @classmethod
+    @classmethod # 클래스 메서드
     def get_info(cls) :
         return f'현재 Person7 클래스의 인스턴스는 총 {cls.count}개입니다.' # cls.count는 Person7.count와 동일
 
@@ -341,6 +345,8 @@ people = [
 ]
 
 print(Person7.get_info())
+
+
 
 # 연산자 오버로딩
 class Person8:
@@ -478,9 +484,9 @@ for member in members :
 
 # 클래스 상속
 # 부모 클래스의 동작을 자식 클래스가 재사용, 확장, 수정 하는 것을 의미
-# class 클래스명(부모클래스명) :
+# class 클래스명(부모 클래스명) :
 
-class Parent:
+class Parent: # 부모 클래스
     def __init__(self, family_name) :
         self.__family_name = family_name
         print('Parent 클래스의 __init__() ...')
@@ -489,7 +495,7 @@ class Parent:
     def family_name(self) :
         return self.__family_name
 
-class Child(Parent):
+class Child(Parent): # 자식 클래스
     def __init__(self, first_name, last_name) :
         Parent.__init__(self, last_name) # 부모 클래스의 __famil_name 필드를 매개변수 last_name으로 초기화
         # super().__init__(last_name) # Parent 대신 super()라고 작성해도 됨
