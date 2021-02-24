@@ -28,7 +28,7 @@ class Student() :
 
     def __repr__(self) :
         return f'{self.__class__.__name__} (name : {self.name}, gender : {self.gender}, height : {self.height})'
-        # 클래스의 이름(name : , gener : , height :) 이런 식으로 출력
+        # 클래스의 이름(name : , gender : , height :) 이런 식으로 출력
         # repr을 str로 바꾸어도 동일하게 출력 됨
     
 # s1 = Student('홍길동', '남', 176.5)

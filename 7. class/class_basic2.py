@@ -184,6 +184,10 @@ class Person4 :
             raise TypeError('나이는 0이상의 값만 허용합니다.')
         self.__age = age
 
+
+
+
+
 # members = [
 #     Person4('홍길동', 20),
 #     Person4('이순신', 45),
