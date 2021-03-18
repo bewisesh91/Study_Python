@@ -15,5 +15,8 @@ P6([4353, 2314, 2956, 3382, 9362, 3900])
 from typing import List
 def P6(num_list: List[float]) -> List[float]: 
     ##### Modify code Here #####
+    num_list.remove(3382)
+    num_list.extend([5566, 1830])
+    num_list.sort()
     return num_list
     ##### End of your code #####

@@ -14,7 +14,7 @@ False
 Complete P1 function
 """
 
-def P1(L: list) -> bool:
+def P1(L:list) -> bool:
     ##### Write your Code Here #####
     if L[0] == L[-1] :
         return True

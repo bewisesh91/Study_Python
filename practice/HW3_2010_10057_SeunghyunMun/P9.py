@@ -31,6 +31,9 @@ P9(rat_1, rat_2)
 
 def P9(rat_1: list, rat_2: list) -> list:
     ##### Modify code Here #####
-  
-    return list()
+    new_list = []
+    for i in range(len(rat_1)) :
+        new_list.append(rat_1[i])
+        new_list.append(rat_2[i])
+    return new_list
     ##### End of your code #####

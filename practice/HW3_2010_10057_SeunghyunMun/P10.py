@@ -19,6 +19,8 @@ P10(10, 11)
 
 def P10(start_i: int, end_i: int) -> list:
     ##### Modify code Here #####
-  
-    return list()
+    new_list = []
+    for i in range(start_i, end_i+1) :
+        new_list.append(i)
+    return new_list
     ##### End of your code #####

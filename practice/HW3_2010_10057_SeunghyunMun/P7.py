@@ -19,6 +19,9 @@ P7([[0,0,0],[1]])
 """
 def P7(nested_list: list) -> list:  
     ##### Modify code Here #####
-  
+    new_list = []
+    new_list.append(nested_list[0][0])
+    new_list.append(nested_list[1][-1])
+    nested_list = new_list
     return nested_list
     ##### End of your code #####

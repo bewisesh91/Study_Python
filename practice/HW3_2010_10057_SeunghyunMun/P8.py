@@ -23,6 +23,8 @@ P8(rat_1, rat_2, 3)
 """
 def P8(rat_1: list, rat_2: list, measure_day: int) -> bool:
     ##### Modify code Here #####
-  
-    return False
+    if rat_1[measure_day-1] > rat_2[measure_day-1] :
+        return True
+    else :    
+        return False
     ##### End of your code #####
