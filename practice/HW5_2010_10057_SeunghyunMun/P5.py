@@ -40,7 +40,18 @@ radium 88 226
 
 def P5(input_filename: str, out_filename: str):        
     ##### Write your Code Here ##### 
-
-
-    ##### End of your code #####
+    with open(input_filename, 'r') as input_file, open(out_filename, 'w') as output_file :
+        contents = input_file.readlines()
     
+        for content in contents :
+            if content.startswith('//') :
+                pass
+            elif content.startswith('#') :
+                content = content.replace('#', "")
+                output_file.write(content)
+            elif '#' in content :
+                content = content.replace('#', "\n")
+                output_file.write(content)
+            else :
+                output_file.write(content)
+    ##### End of your code #####

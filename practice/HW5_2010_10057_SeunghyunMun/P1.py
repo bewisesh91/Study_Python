@@ -20,9 +20,12 @@ Then return the list of lists.
 """
 def P1(filename: str) -> list:        
     ##### Write your Code Here #####
+    with open(filename, 'r') as practice :
+        contents = practice.readlines()
     
+    new_list = []
+    for content in contents :
+        new_list.append([content.strip()])
 
-    return list()
+    return new_list
     ##### End of your code #####
-
-

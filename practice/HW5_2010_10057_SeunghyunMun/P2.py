@@ -15,6 +15,8 @@ it should return
 
 def P2(filename: str) -> list:        
     ##### Write your Code Here #####
-
-    return list()
+    with open(filename, 'r') as practice :
+        contents = practice.readlines()
+    
+    return list(reversed(contents))
     ##### End of your code #####

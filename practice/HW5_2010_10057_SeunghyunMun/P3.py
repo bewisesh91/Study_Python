@@ -24,7 +24,24 @@ P3 should return below list.
 
 def P3(filename: str) -> list:        
     ##### Write your Code Here #####    
+    with open(filename, 'r') as practice :
+        contents = practice.readlines()
+    new_contents = []
+    for content in contents :
+        if content.startswith('//') :
+            pass
+        elif content.startswith('#') :
+            pass
+        else :
+            new_contents.append(content)
+    
 
-    return list()
+    new_contents2 = []
+    for content in new_contents :
+        if '#' in content :
+            content = content[0:content.index('#')]
+            new_contents2.append(content)
+        else :
+            new_contents2.append(content.strip())
+    return new_contents2
     ##### End of your code #####
-

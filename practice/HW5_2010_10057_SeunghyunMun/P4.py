@@ -26,6 +26,11 @@ radium,88,226
 
 def P4(input_filename: str, out_filename: str):        
     ##### Write your Code Here #####    
-
+    with open(input_filename, 'r') as input_file, open(out_filename, 'w') as output_file :
+        contents = input_file.readlines()
+        for content in contents :
+            content = content.replace(" ",",")
+            output_file.write(content)
     ##### End of your code #####
-    
+
+P4('alkaline_metals.txt','alkaline_metals_adj.txt')
