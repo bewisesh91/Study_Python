@@ -26,9 +26,10 @@ Complete P3 function for which input is the person's info and returns the first 
 
 def P3(info:list) -> str:        
     ##### Write your Code Here #####
-    
-    
-    return '1234567'
+    print(###)
+    print(###)
+    print(###)
+    return
     ##### End of your code #####
 
 
