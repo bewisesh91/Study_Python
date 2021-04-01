@@ -22,7 +22,8 @@ False
 
 def P2(n:int) -> bool:        
     ##### Write your Code Here #####
-    
+    print(###)
+    print(###)
     return False
     ##### End of your code #####
 
