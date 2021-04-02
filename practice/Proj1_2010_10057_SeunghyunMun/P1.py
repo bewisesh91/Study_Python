@@ -26,8 +26,18 @@ Complete P1 function that returns the number of of player 1's wins
 """
 def P1(game: list) -> int:        
     ##### Write your Code Here #####
-
-    return -1
+    win_count = 0
+    for i in range(len(game)) :
+        if len(set(game[i])) == 1 or len(set(game[i])) == 3 :
+            pass
+        else : 
+            if game[i][0] == 'R' and ((game[i][1] == 'R' or game[i][1] == 'S') and (game[i][2] == 'R' or game[i][2] =='S')) :
+                win_count += 1
+            elif game[i][0] == 'S' and ((game[i][1] == 'S' or game[i][1] == 'P') and (game[i][2] == 'S' or game[i][2] =='P')) :
+                win_count += 1
+            elif game[i][0] == 'P' and ((game[i][1] == 'P' or game[i][1] == 'R') and (game[i][2] == 'P' or game[i][2] =='R')) :
+                win_count += 1
+    return win_count
     ##### End of your code #####
 
 
